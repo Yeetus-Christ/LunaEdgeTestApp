@@ -1,6 +1,8 @@
-# Database setup
+# Project setup
 
-1. Open appsetting.json file and change the connection string to the connection string of your local MSSQL database.
+## Without docker
+
+1. Open appsetting.json file and change the connection string to the connection string of your local MSSQL database (If the database specified in connection string doesn't exist, starting the app will automatically create it and migrate tables):
 
 ```json
 "ConnectionStrings": {
@@ -8,11 +10,17 @@
 }
 ```
 
-2. Open the project in the terminal. Input the following commands to create the tables in your local database and fill them with initial data:
+After that, you can start the application.
+
+## With docker
+
+1. Open the folder containing local repository in the terminal. Then execute the following command:
 
 ```
-dotnet ef database update InitialCreate
+docker-compose up --build
 ```
+
+This command will create ASP.NET Core Web API and MSSQL containers and automatically start them. When Web API starts up, it will automatically create database in MSSQL container and migrate tables. After that, you can access endpoints on "https://localhost:8081/". Additionally, you can go to "https://localhost:8081/swagger/index.html" to check API documentation
 
 # Api Documentation
 
