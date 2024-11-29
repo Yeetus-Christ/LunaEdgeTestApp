@@ -2,6 +2,7 @@
 using LunaEdgeTestApp.Repositories;
 using LunaEdgeTestApp.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var userRepoMock = GetUsersRepositoryMock();
             var configMock = GetConfigurationMock();
-            var service = new UsersService(configMock.Object, userRepoMock.Object);
+            var loggerMock = new Mock<ILogger<UsersService>>();
+            var service = new UsersService(configMock.Object, userRepoMock.Object, loggerMock.Object);
 
             // Act
             var result = service.Authenticate("TestUser", null, "TestPassword123!");
@@ -52,7 +54,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var userRepoMock = GetUsersRepositoryMock();
             var configMock = GetConfigurationMock();
-            var service = new UsersService(configMock.Object, userRepoMock.Object);
+            var loggerMock = new Mock<ILogger<UsersService>>();
+            var service = new UsersService(configMock.Object, userRepoMock.Object, loggerMock.Object);
 
             // Act & Assert
             Assert.Throws<ArgumentException>(() => service.Register("NewUser", "newuser@example.com", "short"));
@@ -64,7 +67,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var userRepoMock = GetUsersRepositoryMock();
             var configMock = GetConfigurationMock();
-            var service = new UsersService(configMock.Object, userRepoMock.Object);
+            var loggerMock = new Mock<ILogger<UsersService>>();
+            var service = new UsersService(configMock.Object, userRepoMock.Object, loggerMock.Object);
 
             // Act
             service.Register("NewUser", "newuser@example.com", "ValidPassword123!");
@@ -79,7 +83,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var userRepoMock = GetUsersRepositoryMock();
             var configMock = GetConfigurationMock();
-            var service = new UsersService(configMock.Object, userRepoMock.Object);
+            var loggerMock = new Mock<ILogger<UsersService>>();
+            var service = new UsersService(configMock.Object, userRepoMock.Object, loggerMock.Object);
             var user = new User { Id = Guid.NewGuid(), Username = "TestUser" };
 
             // Act

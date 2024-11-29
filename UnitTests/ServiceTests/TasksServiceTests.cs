@@ -3,6 +3,7 @@ using LunaEdgeTestApp.Enums;
 using LunaEdgeTestApp.Models;
 using LunaEdgeTestApp.Repositories;
 using LunaEdgeTestApp.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
             var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var taskDto = new TaskDto
             {
                 Title = "New Task",
@@ -62,8 +64,9 @@ namespace UnitTests.ServiceTests
         {
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
-            var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var usersRepoMock = GetUsersRepositoryMock(); 
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var userId = Guid.NewGuid();
 
             // Act
@@ -79,7 +82,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
             var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var userId = Guid.NewGuid();
             var taskId = Guid.NewGuid();
 
@@ -93,7 +97,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
             var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var userId = Guid.Parse("4F9D2DF7-555D-441F-BA66-66FA88A2E4F1");
             var taskId = Guid.Parse("EA5479CB-F35C-42FF-AA81-2BC1B385D7CD");
 
@@ -115,7 +120,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
             var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var taskDto = new TaskDto
             {
                 Title = "Updated Task",
@@ -140,7 +146,8 @@ namespace UnitTests.ServiceTests
             // Arrange
             var tasksRepoMock = GetTasksRepositoryMock();
             var usersRepoMock = GetUsersRepositoryMock();
-            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object);
+            var loggerMock = new Mock<ILogger<TasksService>>();
+            var service = new TasksService(tasksRepoMock.Object, usersRepoMock.Object, loggerMock.Object);
             var userId = Guid.Parse("4F9D2DF7-555D-441F-BA66-66FA88A2E4F1");
             var taskId = Guid.Parse("EA5479CB-F35C-42FF-AA81-2BC1B385D7CD");
 

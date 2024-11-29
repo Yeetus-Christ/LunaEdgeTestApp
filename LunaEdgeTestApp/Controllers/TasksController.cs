@@ -26,7 +26,14 @@ namespace LunaEdgeTestApp.Controllers
         {
             var userId = GetUserIdFromJwt();
 
-            _taskService.CreateTask(taskDto, userId);
+            try
+            {
+                _taskService.CreateTask(taskDto, userId);
+            }
+            catch (Exception ex) 
+            { 
+                return BadRequest(ex.Message);
+            }
 
             return Ok();
         }
@@ -53,8 +60,16 @@ namespace LunaEdgeTestApp.Controllers
         public ActionResult<Models.Task> GetTaskById(Guid id)
         {
             var userId = GetUserIdFromJwt();
+            Models.Task result;
 
-            var result = _taskService.GetTaskById(id, userId);
+            try
+            {
+                result = _taskService.GetTaskById(id, userId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
             return Ok(result);
         }
@@ -65,7 +80,14 @@ namespace LunaEdgeTestApp.Controllers
         {
             var userId = GetUserIdFromJwt();
 
-            _taskService.UpdateTask(taskDto, userId, id);
+            try
+            {
+                _taskService.UpdateTask(taskDto, userId, id);
+            }
+            catch (Exception ex) 
+            { 
+                return BadRequest(ex.Message);
+            }
 
             return Ok();
         }
@@ -76,7 +98,14 @@ namespace LunaEdgeTestApp.Controllers
         {
             var userId = GetUserIdFromJwt();
 
-            _taskService.DeleteTask(id, userId);
+            try
+            {
+                _taskService.DeleteTask(id, userId);
+            }
+            catch (Exception ex) 
+            { 
+                return BadRequest(ex.Message);
+            }
 
             return Ok();
         }

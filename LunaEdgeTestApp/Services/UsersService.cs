@@ -14,27 +14,35 @@ namespace LunaEdgeTestApp.Services
     {
         private readonly IUsersRepository _userRepository;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<UsersService> _logger;
 
-        public UsersService(IConfiguration configuration, IUsersRepository usersRepository)
+        public UsersService(IConfiguration configuration, IUsersRepository usersRepository, ILogger<UsersService> logger)
         {
             _configuration = configuration;
             _userRepository = usersRepository;
+            _logger = logger;
         }
 
         public User Authenticate(string? username, string? email, string password)
         {
+            _logger.LogInformation($"Authenticating user with username {username} or email {email}");
+
             var user = _userRepository.GetUserByUsernameOrEmail(username, email);
 
             if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
+                _logger.LogInformation($"User with username {username} authenticated successfully");
                 return user;
             }
 
+            _logger.LogWarning($"Authentication failed for user with username {username} or email {email}");
             return null!;
         }
 
         public void Register(string username, string email, string password)
         {
+            _logger.LogInformation($"Registering new user with username {username} and email {email}");
+
             if (!CheckComplexity(password)) 
             {
                 throw new ArgumentException("Password should contain minimum 8 characters, at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character");
@@ -48,7 +56,17 @@ namespace LunaEdgeTestApp.Services
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
             };
 
-            _userRepository.AddUser(user);
+            try
+            {
+                _userRepository.AddUser(user);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error registering user with username {username}");
+                throw;
+            }
+
+            _logger.LogInformation($"User with username {username} registered successfully");
         }
 
         public string GenerateJwtToken(User user)

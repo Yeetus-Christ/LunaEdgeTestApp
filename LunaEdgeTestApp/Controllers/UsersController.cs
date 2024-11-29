@@ -43,7 +43,7 @@ namespace LunaEdgeTestApp.Controllers
             {
                 _usersService.Register(registerRequest.Username, registerRequest.Email, registerRequest.Password);
             }
-            catch (ArgumentException ex) 
+            catch (Exception ex) 
             { 
                 return BadRequest(new { message = ex.Message });
             }
