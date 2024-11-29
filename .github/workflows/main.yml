@@ -33,4 +33,4 @@ jobs:
 
       # Run tests (optional, add if you have tests)
       - name: Run tests
-        run: dotnet test ./LunaEdgeTestApp.Tests/LunaEdgeTestApp.Tests.csproj --no-build --verbosity normal
+        run: dotnet test ./UnitTests/UnitTests.csproj --no-build --verbosity normal
