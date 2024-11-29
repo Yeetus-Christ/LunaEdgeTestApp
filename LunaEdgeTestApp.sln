@@ -5,7 +5,9 @@ VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LunaEdgeTestApp", "LunaEdgeTestApp\LunaEdgeTestApp.csproj", "{36E94B3D-2FCE-4687-BED6-36CCC5D96FB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0729DD2C-3F8C-4BAB-879E-F991D212BBE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0729DD2C-3F8C-4BAB-879E-F991D212BBE6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{64D41689-5F69-4832-A628-50CD2BCB0290}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0729DD2C-3F8C-4BAB-879E-F991D212BBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0729DD2C-3F8C-4BAB-879E-F991D212BBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0729DD2C-3F8C-4BAB-879E-F991D212BBE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D41689-5F69-4832-A628-50CD2BCB0290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D41689-5F69-4832-A628-50CD2BCB0290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D41689-5F69-4832-A628-50CD2BCB0290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D41689-5F69-4832-A628-50CD2BCB0290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
