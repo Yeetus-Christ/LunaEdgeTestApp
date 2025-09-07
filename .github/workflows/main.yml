@@ -31,6 +31,10 @@ jobs:
       - name: Build project
         run: dotnet build ./LunaEdgeTestApp/LunaEdgeTestApp.csproj --configuration Release
 
+      # Build tests
+      - name: Build tests
+        run: dotnet build ./UnitTests/UnitTests.csproj --configuration Release
+
       # Run tests (optional, add if you have tests)
       - name: Run tests
         run: dotnet test ./UnitTests/UnitTests.csproj --no-build --verbosity normal
