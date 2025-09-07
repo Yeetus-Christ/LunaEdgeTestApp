@@ -1,0 +1,36 @@
+name: Build and Test ASP.NET Core Web API
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up .NET environment
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x # Specify the version of .NET you are using
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore ./LunaEdgeTestApp/LunaEdgeTestApp.csproj
+
+      # Build the project
+      - name: Build project
+        run: dotnet build ./LunaEdgeTestApp/LunaEdgeTestApp.csproj --configuration Release
+
+      # Run tests (optional, add if you have tests)
+      - name: Run tests
+        run: dotnet test ./UnitTests/UnitTests.csproj --no-build --verbosity normal
